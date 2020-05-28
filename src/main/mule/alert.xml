@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:cloudhub="http://www.mulesoft.org/schema/mule/cloudhub" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cloudhub http://www.mulesoft.org/schema/mule/cloudhub/current/mule-cloudhub.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="99d06a2f-037f-4b31-a52a-25f5e66a70a4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<cloudhub:config name="CloudHub_Config" doc:name="CloudHub Config" doc:id="0ed46bfa-239a-4f1c-8ead-b85285afd59a" >
+		<cloudhub:connection username="kuldeepdemo" password="Outlook@06" environment="7d0f5e4f-ee40-4ce8-8339-14a3575e8e11" />
+	</cloudhub:config>
+	<flow name="alertFlow" doc:id="c1a6b0ac-2c7e-4303-afca-9880ac5bb8ad" >
+		<http:listener doc:name="Listener" doc:id="ef51002e-da7c-4867-8edf-83ddba5f19e7" config-ref="HTTP_Listener_config" path="/alert"/>
+		<cloudhub:create-notification doc:name="Create Notification" doc:id="90a775b8-44e8-4423-a542-f84c3fa5a06c" config-ref="CloudHub_Config" domain="alert" priority="ERROR"/>
+		<logger level="INFO" doc:name="Logger" doc:id="824638a2-7d86-4cd4-9234-9d7770c871fc" />
+	</flow>
+</mule>
