@@ -33,7 +33,7 @@
 						<username>kuldeepdemo</username>
 						<password>Outlook@06</password>
 						<environment>Sandbox</environment>
-						<applicationName>ALERT_KULDEEP_AZURE</applicationName>
+						<applicationName>ALERT-AZURE-CICD</applicationName>
 						<workerType>MICRO</workerType>
 						<businessGroup>APISERO</businessGroup>
 						<properties>
